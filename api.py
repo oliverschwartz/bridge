@@ -11,7 +11,7 @@ filename = 'subaccountspage.txt'
 
 ''' gets subaccount url beginnings from a .html file
 saved as a .txt file (called subaccounts.txt) '''
-def getSubAccountsURL(): 
+def get_sub_accounts_urls(): 
 
   # check if file 'subaccountspage.txt' is in directory
   if not os.path.isfile(filename):
@@ -33,7 +33,7 @@ def getSubAccountsURL():
 
 
 ''' creates a custom role in all subaccounts '''
-def createRolesInAllSubAccounts():
+def create_roles_in_all_sub_accounts():
   arr = []
   textfile = open('subAccountURLs.txt', 'r')
   for item in textfile:
@@ -53,7 +53,7 @@ def createRolesInAllSubAccounts():
 
 ''' retrieves all permissions from 'practiceadmin' role in main accounts
 and saves permissions in permissions.txt '''
-def getCustomRole():
+def get_custom_role_permissions():
   extendedUrl = url + "/api/author/roles"
   headers = {"authorization": api_token}
   r = requests.get(extendedUrl, headers=headers)
@@ -70,34 +70,39 @@ def getCustomRole():
   textfile.close()
 
 
-def createCustomRole(practice, roleName):
-  # extendedUrl = "https://" + practice + "-lincoln.bridgeapp.com/api/author/roles"
-  headers = {"authorization": api_token,
-  "Content-Type": 'application/json'}
+def create_custom_role(practice, roleName):
+  extendedUrl = "https://" + practice + "-lincoln.bridgeapp.com/api/author/roles"
+  headers = {"authorization": api_token}
 
-  # # check if file 'permissions.txt' is in directory
-  # if not os.path.isfile('permissions.txt'):
-  #   print "permissions.txt not in directory"
-  #   return
+  # check if file 'permissions.txt' is in directory
+  if not os.path.isfile('permissions.txt'):
+    print "permissions.txt not in directory"
+    return
 
-  # # textfile = open('permissions.txt')
-  # # filetext = textfile.read()
+  # textfile = open('permissions.txt')
+  # filetext = textfile.read()
 
-  # payload = {
-  # "name": roleName,
-  # "basis_role_id": 'admin'
-  # }
-  # r = requests.post(url=extendedUrl, data=payload, headers=headers)
-  # data = r.json()
+  payload = {
+  "name": roleName,
+  "basis_role_id": 'admin'
+  }
+  r = requests.post(url=extendedUrl, data=payload, headers=headers)
+  data = r.json()
+  print r
+  permissionsToDelete = []
 
-  # # get id of newly created custom role
-  # for role in data['roles']:
-  #   if role['name'] == roleName:
-  #     roleID = str(role['id'])
-  #     print "roleID is: " + roleID
-  #   if role.has_key('permissions'):
-  #     permissionsToDelete = role['permissions'] 
+  # get id of newly created custom role
+  for role in data['roles']:
+    if role['name'] == roleName:
+      role_id = str(role['id'])
+    if role.has_key('permissions'):
+      permissions = role['permissions']
 
+  for permission in permissions:
+    permissionsToDelete.append(str(permission))
+  for permission in permissionsToDelete:
+    if permission != 'free_trial_update' and permission != 'free_trial_get_bridge':
+      delete_permission(practice, permission, role_id)
   # permissionString = '''['free_trial_update,' '''
   # for permission in permissionsToDelete:
   #   if permission != 'free_trial_update':
@@ -105,13 +110,24 @@ def createCustomRole(practice, roleName):
   # permissionString = permissionString[:-1]
   # permissionString += ']'
 
-  # delete all permissions
-  url = "https://" + practice + "-lincoln.bridgeapp.com/api/admin/permissions"
-  payload = {"role_id":"f1da7249-9bb1-4f68-aaff-10fbab46cf5c","permission_ids":["account_self_view","account_self_update"]}
 
-  r2 = requests.delete(url=url, data=json.dumps(payload), headers=headers)
-  print r2
-  
+def delete_permission(practice, permission, role_id):
+  headers = {"authorization": api_token,
+  "Content-Type": 'application/json'}
+  url = "https://" + practice + "-lincoln.bridgeapp.com/api/admin/permissions"
+  payload = {"role_id":role_id,"permission_ids":[permission]}
+  r = requests.delete(url=url, data=json.dumps(payload), headers=headers) 
+  if r.status_code != 204:
+    print "error deleting " + permission + "in " + practice
+
+def add_permission(practice, permission, role_id):
+  headers = {"authorization": api_token,
+  "Content-Type": 'application/json'}
+  url = "https://" + practice + "-lincoln.bridgeapp.com/api/admin/permissions"
+  payload = {"role_id":role_id,"permission_ids":[permission]}
+  r = requests.delete(url=url, data=json.dumps(payload), headers=headers) 
+  print "adding: " + permission + "   " + "status: " + str(r.status_code)
+
 
 
 if __name__ == "__main__":
@@ -121,4 +137,4 @@ if __name__ == "__main__":
   # getCustomRole()
   # createRolesInGivenSubAccount(313vets)
   # createRolesInGivenSubAccount('313vets')
-  createCustomRole('313vets','test')
+  create_custom_role('313vets','test')
