@@ -71,49 +71,46 @@ def getCustomRole():
 
 
 def createCustomRole(practice, roleName):
-  extendedUrl = "https://" + practice + "-lincoln.bridgeapp.com/api/author/roles"
-  headers = {"authorization": api_token}
+  # extendedUrl = "https://" + practice + "-lincoln.bridgeapp.com/api/author/roles"
+  headers = {"authorization": api_token,
+  "Content-Type": 'application/json'}
 
-  # check if file 'permissions.txt' is in directory
-  if not os.path.isfile('permissions.txt'):
-    print "permissions.txt not in directory"
-    return
+  # # check if file 'permissions.txt' is in directory
+  # if not os.path.isfile('permissions.txt'):
+  #   print "permissions.txt not in directory"
+  #   return
 
-  # textfile = open('permissions.txt')
-  # filetext = textfile.read()
+  # # textfile = open('permissions.txt')
+  # # filetext = textfile.read()
 
-  payload = {
-  "name": roleName,
-  "basis_role_id": 'admin'
-  }
-  r = requests.post(url=extendedUrl, data=payload, headers=headers)
-  data = r.json()
+  # payload = {
+  # "name": roleName,
+  # "basis_role_id": 'admin'
+  # }
+  # r = requests.post(url=extendedUrl, data=payload, headers=headers)
+  # data = r.json()
 
-  # get id of newly created custom role
-  for role in data['roles']:
-    if role['name'] == roleName:
-      roleID = role['id']
-      print roleID
-    if role.has_key('permissions'):
-      permissionsToDelete = role['permissions'] 
+  # # get id of newly created custom role
+  # for role in data['roles']:
+  #   if role['name'] == roleName:
+  #     roleID = str(role['id'])
+  #     print "roleID is: " + roleID
+  #   if role.has_key('permissions'):
+  #     permissionsToDelete = role['permissions'] 
 
-  permissionString = '''['free_trial_update,' '''
-  for permission in permissionsToDelete:
-    if permission != 'free_trial_update':
-      permissionString += "\"" + permission + "\","
-  permissionString = permissionString[:-1]
-  permissionString += ']'
-  print permissionString
+  # permissionString = '''['free_trial_update,' '''
+  # for permission in permissionsToDelete:
+  #   if permission != 'free_trial_update':
+  #     permissionString += "\"" + permission + "\","
+  # permissionString = permissionString[:-1]
+  # permissionString += ']'
 
   # delete all permissions
-  extendedUrl2 = "https://" + practice + "-lincoln.bridgeapp.com/api/admin/permissions"
-  payload2 = {
-  "role_id": roleID,
-  "permission_ids": permissionString
-  }
+  url = "https://" + practice + "-lincoln.bridgeapp.com/api/admin/permissions"
+  payload = {"role_id":"f1da7249-9bb1-4f68-aaff-10fbab46cf5c","permission_ids":["account_self_view","account_self_update"]}
 
-  r = requests.delete(url=extendedUrl2, data=payload2, headers=headers)
-  print r.text
+  r2 = requests.delete(url=url, data=json.dumps(payload), headers=headers)
+  print r2
   
 
 
