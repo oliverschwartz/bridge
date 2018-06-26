@@ -1,18 +1,3 @@
-313vets
-4paws
-adelaideanimalhospital
-adelaideplains
-aldingavetclinic
-aldingawillunga
-alicespringsvet
-almastvet
-animalemergencyservice
-anvetbeenleigh
-balmainvethospital
-benallavetclinic
-bentleighvet
-bizcoach
-bondijunctionvet
 bveccs
 canberracatvet
 canberraequinehospital
@@ -86,6 +71,7 @@ rivapets
 riverbank
 riverland
 riverport
+rodin
 sheldonstate
 sheppvets
 snowyvets
@@ -115,7 +101,6 @@ wauchopevets
 westernriversvets
 westolympia
 westqueanbeyanvet
-willungaandaldinga
 willungavet
 yambavet
 yassvalleyvet
