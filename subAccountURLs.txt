@@ -1,3 +1,16 @@
+313vets
+4paws
+adelaideanimalhospital
+adelaideplains
+alicespringsvet
+almastvet
+animalemergencyservice
+anvetbeenleigh
+balmainvethospital
+benallavetclinic
+bentleighvet
+bizcoach
+bondijunctionvet
 bveccs
 canberracatvet
 canberraequinehospital
@@ -58,7 +71,7 @@ northcote
 northerndistrictsvet
 northsideemergencyvet
 pawsandclaws
-petandtheirvet
+petsandtheirpeople
 petdoctorspalmbeach
 petmedical
 petstockvet
