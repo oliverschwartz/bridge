@@ -52,6 +52,9 @@ def make_practice_admin(userID, subAccount):
 
 if __name__ == "__main__":
     # iterate through .csv file and each user
+    
+
+
     last_name = "Schwartz"
     first_name = "Oliver"
     full_name = first_name + " " + last_name
