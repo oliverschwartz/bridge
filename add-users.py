@@ -25,13 +25,29 @@ def add(subAccount, first_name, last_name, full_name, sortable_name, email):
     }
     
     r = requests.post(url=url, headers=headers, json=payload)
-    print r.text
+    data = r.json()
 
-def make_practice_admin(email, subAccount):
-    
+    for item in data['users']:
+        if item['email'] == email:
+            userID = item['id']
+    return userID
 
+def make_practice_admin(userID, subAccount):
+    url = "https://" + subAccount + "-lincoln.bridgeapp.com/api/author/roles"
+    headers = headers = {"authorization": api_token}
+    r = requests.get(url, headers=headers)
+    data = r.json()
 
+    for role in data['roles']:
+        if role['name'] == "practiceadmin":
+            roleID = role['id']
 
+    url2 = "https://" + subAccount + "-lincoln.bridgeapp.com/api/admin/users/" + userID + "/roles/batch"
+    payload = {
+        'roles': roleID
+    }
+    r2 = requests.put(url2, headers=headers, json=payload)
+    print r2.text
 
 
 if __name__ == "__main__":
@@ -41,5 +57,6 @@ if __name__ == "__main__":
     full_name = first_name + " " + last_name
     sortable_name = last_name + ", " + first_name
     email = "os4@princeton.edu"
-    add(subAccount="313vets", first_name=first_name, last_name=last_name, full_name=full_name,
+    userID = add(subAccount="313vets", first_name=first_name, last_name=last_name, full_name=full_name,
         sortable_name=sortable_name, email=email)
+    make_practice_admin(userID, "313vets")
