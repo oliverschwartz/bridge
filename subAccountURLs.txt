@@ -1,6 +1,7 @@
 313vets
 4paws
 adelaideplains
+aes
 almastvet
 balmainvethospital
 benallavetclinic
@@ -17,7 +18,7 @@ evehealth
 familypetvet
 flindersviewvet
 gawler
-goldcostequine
+goldcoastequine
 gowrievet
 greaterspringfieldvet
 greatwestern
