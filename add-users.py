@@ -1,4 +1,3 @@
-# POST calls iterating through each sub account
 import requests
 import json
 import datetime
@@ -47,22 +46,28 @@ def make_practice_admin(userID, subAccount):
         'roles': roleID
     }
     r2 = requests.put(url2, headers=headers, json=payload)
-    print r2.text
+    
 
 
 if __name__ == "__main__":
     # iterate through .csv file and each user
     with open('users.csv', 'rb') as csvfile:
-        reader = csv.reader(csvfile, delimiter=',', quotechar='|')
+        reader = csv.reader(csvfile)
         for row in reader:
-            print(row)
+            email = row[0]
+            first_name = row[1]
+            last_name = row[2]
+            full_name = first_name + ' ' + last_name
+            sortable_name = last_name + ', ' + first_name
+            role = row[4]
+            subAccount = row[5]
 
-
-    # last_name = "Schwartz"
-    # first_name = "Oliver"
-    # full_name = first_name + " " + last_name
-    # sortable_name = last_name + ", " + first_name
-    # email = "os4@princeton.edu"
-    # userID = add(subAccount="313vets", first_name=first_name, last_name=last_name, full_name=full_name,
-    #     sortable_name=sortable_name, email=email)
-    # make_practice_admin(userID, "313vets")
+            if role == 'practice_admin':
+                userID = add(subAccount=subAccount, first_name=first_name, last_name=last_name, full_name=full_name,
+                    sortable_name=sortable_name, email=email)
+                make_practice_admin(userID, subAccount=subAccount)
+                print 'enrolled practice admin'
+            else: 
+                add(subAccount=subAccount, first_name=first_name, last_name=last_name, full_name=full_name,
+                    sortable_name=sortable_name, email=email)
+                print 'enrolled learner'
