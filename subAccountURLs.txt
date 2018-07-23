@@ -7,9 +7,7 @@ balmainvethospital
 benallavetclinic
 bentleighvet
 bveccs
-canberracatvet
 cheltenhamvetclinic
-coledental
 dandenongvet
 drpaws
 eastportvet
@@ -35,7 +33,6 @@ midwestvet
 mivet
 mulberrylanevet
 murraybridgevet
-murwillumbahvet
 mylocalvet
 navetgroup
 pawsandclaws
@@ -44,6 +41,7 @@ petsandtheirpeople
 petstockvet
 racecourseroadvet
 randwickequine
+referralandemergencycentre
 ripleyvet
 rivapets
 rivercountry
