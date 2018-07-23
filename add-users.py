@@ -47,8 +47,6 @@ def make_practice_admin(userID, subAccount):
     }
     r2 = requests.put(url2, headers=headers, json=payload)
     
-
-
 if __name__ == "__main__":
     # iterate through .csv file and each user
     with open('users.csv', 'rb') as csvfile:
