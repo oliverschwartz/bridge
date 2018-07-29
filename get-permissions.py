@@ -7,7 +7,6 @@ import os.path
 # global variables
 url = "https://lincoln.bridgeapp.com"
 api_token = "Basic MjAzNmFmMjAtNDU1My00NTFkLTg3ZjAtMmUxOTA4NTU4YTMxOmRjMzUzYzQ1LWVmNTAtNGRjZC05Y2U2LTcxMGY0YWIzZjkzNw=="
-filename = 'subaccountspage.txt'
 
 ''' retrieves all permissions from 'practiceadmin' role in main accounts
 and saves permissions in permissions.txt '''

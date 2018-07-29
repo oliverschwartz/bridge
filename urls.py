@@ -10,7 +10,7 @@ api_token = "Basic MjAzNmFmMjAtNDU1My00NTFkLTg3ZjAtMmUxOTA4NTU4YTMxOmRjMzUzYzQ1L
 filename = 'subaccountspage.txt'
 
 ''' gets subaccount url beginnings from a .html file
-saved as a .txt file (called subaccounts.txt) '''
+saved as a .txt file (called subaccountspage.txt) '''
 def get_sub_accounts_urls(): 
   # check if file 'subaccountspage.txt' is in directory
   if not os.path.isfile(filename):

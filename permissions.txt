@@ -81,3 +81,4 @@ live_course_enrollment_destroy
 course_attempts_report_view
 task_enrollment_create
 task_enrollment_destroy
+live_course_update_sessions

@@ -1,7 +1,6 @@
 313vets
 4paws
 adelaideplains
-aes
 almastvet
 balmainvethospital
 benallavetclinic
@@ -56,6 +55,7 @@ sugarland
 summerhillvet
 sunbury
 tallebudgeravet
+teamlincoln
 thevetclinic
 toowongorthodontics
 turramurravet

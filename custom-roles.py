@@ -84,7 +84,28 @@ def add_permission(practice, permission, role_id):
   else: 
     print "successful creation"
 
+def delete_role():
+  arr = []
+  headers = {"authorization": api_token}
+  textfile = open('subAccountURLs.txt', 'r')
+  for item in textfile:
+      arr.append(item.strip('\n'))
+  textfile.close()
+  for practice in arr:
+    if (practice != "313vets" and practice != "teamlincoln" and practice != "4paws"):
+      print "deleting 'practiceadmin' in " + practice
+      extendedUrl = "https://" + practice + "-lincoln.bridgeapp.com/api/author/roles"
+      r = requests.get(url=extendedUrl, headers=headers)
+      data = r.json()
+      for role in data['roles']:
+        if role['name'] == 'practiceadmin':
+          role_id = str(role['id'])
+      url2 = extendedUrl + "/" + role_id
+      r2 = requests.delete(url=url2, headers=headers)
+      print r2
+      
 
 if __name__ == "__main__":
-  create_roles_in_all_sub_accounts()
+  # create_roles_in_all_sub_accounts()
+  delete_role()
 
