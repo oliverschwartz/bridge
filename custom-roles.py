@@ -3,6 +3,7 @@ import requests
 import json
 import re
 import os.path
+import sys
 
 # global variables
 url = "https://lincoln.bridgeapp.com"
@@ -10,9 +11,9 @@ api_token = "Basic MjAzNmFmMjAtNDU1My00NTFkLTg3ZjAtMmUxOTA4NTU4YTMxOmRjMzUzYzQ1L
 filename = 'subaccountspage.txt'
 
 ''' creates a custom role in all subaccounts '''
-def create_roles_in_all_sub_accounts():
+def create_roles_in_all_sub_accounts(filename):
   arr = []
-  textfile = open('subAccountURLs.txt', 'r')
+  textfile = open(filename, 'r')
   for item in textfile:
       arr.append(item.strip('\n'))
   textfile.close()
@@ -92,7 +93,7 @@ def delete_role():
       arr.append(item.strip('\n'))
   textfile.close()
   for practice in arr:
-    if (practice != "313vets" and practice != "teamlincoln" and practice != "4paws"):
+    if (practice == "313vets" and practice != "teamlincoln" and practice != "4paws"):
       print "deleting 'practiceadmin' in " + practice
       extendedUrl = "https://" + practice + "-lincoln.bridgeapp.com/api/author/roles"
       r = requests.get(url=extendedUrl, headers=headers)
@@ -106,6 +107,7 @@ def delete_role():
       
 
 if __name__ == "__main__":
-  # create_roles_in_all_sub_accounts()
-  delete_role()
+  create_roles_in_all_sub_accounts(str(sys.argv[1]))
+
+
 
