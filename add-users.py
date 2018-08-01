@@ -7,7 +7,7 @@ api_token = "Basic MjAzNmFmMjAtNDU1My00NTFkLTg3ZjAtMmUxOTA4NTU4YTMxOmRjMzUzYzQ1L
 
 def add_non_learner(subAccount, first_name, last_name, full_name, sortable_name, email):
     url = "https://" + subAccount + "-lincoln.bridgeapp.com/api/admin/users"
-    headers = headers = {"authorization": api_token,
+    headers = {"authorization": api_token,
     'Content-Type': 'application/json', 
     'Accept':'application/json'}
     payload = {
