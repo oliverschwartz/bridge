@@ -1,10 +1,10 @@
 import csv
 import requests
 
+''' created for the purposes of testing before putting on aws lambda'''
 def create():
-
-    name = "ac"
-    practiceurl = "ac"
+    name = "newpractice"
+    practiceurl = "newpracticeurl"
         
     url = "https://lincoln.bridgeapp.com/api/admin/sub_accounts"
     api_token = "Basic MjAzNmFmMjAtNDU1My00NTFkLTg3ZjAtMmUxOTA4NTU4YTMxOmRjMzUzYzQ1LWVmNTAtNGRjZC05Y2U2LTcxMGY0YWIzZjkzNw=="
