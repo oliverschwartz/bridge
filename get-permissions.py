@@ -20,7 +20,7 @@ def get_custom_role_permissions():
     if item['name'] == 'practiceadmin':
       for line in item['permissions']:
         permissions.append(line)
-  textfile = open('permissions.txt', 'w')
+  textfile = open('permissions.csv', 'w')
   for permission in permissions:
     textfile.write(permission + "\n")
   textfile.close()
