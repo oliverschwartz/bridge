@@ -33,7 +33,7 @@ def add_non_learner(subAccount, first_name, last_name, full_name, sortable_name,
 
 def add_learner(subAccount, first_name, last_name, full_name, sortable_name, email, manager_email):
     url = "https://" + subAccount + "-lincoln.bridgeapp.com/api/admin/users"
-    headers = headers = {"authorization": api_token,
+    headers = {"authorization": api_token,
     'Content-Type': 'application/json', 
     'Accept':'application/json'}
     manager_uid = "uid:" + str(manager_email)
@@ -71,7 +71,7 @@ def make_practice_admin(userID, subAccount):
     
 if __name__ == "__main__":
     # iterate through .csv file and each user
-    with open('users1.csv', 'rb') as csvfile:
+    with open('users.csv', 'rb') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             email = row[0]
